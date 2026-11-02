@@ -3,148 +3,420 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>In-Browser AI Test | proxyuser.dev</title>
+    <title>Custom Profile Template</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 0 20px;
-            background-color: #f9f9f9;
-            color: #333;
+        :root {
+            --bg-dark: #0f1011;
+            --bg-nardo: #2c3033;
+            --bg-card: #181a1b;
+            --text-white: #ffffff;
+            --text-muted: #9ca3af;
+            --accent-orange: #c85a32;
+            --font-display: 'Oswald', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
         }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        #status {
-            font-style: italic;
-            color: #666;
-            margin-bottom: 20px;
-            padding: 10px;
-            background: #eee;
-            border-radius: 6px;
-            line-height: 1.4;
-        }
-        textarea {
-            width: 100%;
-            height: 100px;
-            padding: 10px;
+
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            font-size: 16px;
         }
-        button {
-            background-color: #0070f3;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            padding: 2rem 1rem;
         }
-        button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            border: 1px solid #26292b;
+            padding: 2.5rem;
         }
-        #output {
-            margin-top: 25px;
-            white-space: pre-wrap;
-            background: #f4f4f4;
-            padding: 15px;
-            border-radius: 6px;
-            border-left: 4px solid #0070f3;
-            min-height: 50px;
+
+        /* --- HEADER SECTION --- */
+        header {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+
+        .huge-title {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 12vw, 7.5rem);
+            text-transform: uppercase;
+            line-height: 0.85;
+            letter-spacing: -2px;
+            color: var(--text-white);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--bg-nardo);
+            padding-bottom: 1rem;
+        }
+
+        .hero-flex {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            flex-wrap: wrap-reverse;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .greeting {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .name {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .title-sub {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-orange);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .bio {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .signature {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--text-white);
+        }
+
+        /* Hero Image Graphic */
+        .hero-graphic {
+            position: relative;
+            width: 240px;
+            height: 240px;
+            margin: 0 auto;
+        }
+
+        .circle-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background-color: var(--accent-orange);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .profile-img {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 220px;
+            height: 240px;
+            background-color: var(--bg-nardo);
+            object-fit: cover;
+            z-index: 2;
+            border-radius: 4px;
+        }
+
+        /* --- SECTION COMMONS --- */
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--bg-nardo);
+            padding-bottom: 0.5rem;
+        }
+
+        /* --- PROJECTS SECTION --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .project-card {
+            background-color: var(--bg-dark);
+            border: 1px solid #1e2122;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            aspect-ratio: 1 / 1;
+            transition: border-color 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-orange);
+        }
+
+        .proj-num {
+            font-size: 0.75rem;
+            color: var(--accent-orange);
+            font-family: var(--font-sans);
+        }
+
+        .proj-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-top: auto;
+        }
+
+        /* --- SKILLS & EXPERTISE --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            .skills-container { grid-template-columns: 1fr; }
+        }
+
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            border-bottom: 1px dashed var(--bg-nardo);
+            padding-bottom: 0.25rem;
+        }
+
+        .skill-name {
+            color: var(--text-white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            }
+
+        .skill-val {
+            color: var(--text-muted);
+        }
+
+        .quote-box {
+            background-color: var(--bg-nardo);
+            padding: 1.5rem;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .quote-text {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        /* --- CLIENTS SAY --- */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--bg-dark);
+            padding: 1.25rem;
+            border-left: 2px solid var(--accent-orange);
+        }
+
+        .test-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .test-author {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* --- FOOTER / CALL TO ACTION --- */
+        .footer-cta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            border-top: 1px solid var(--bg-nardo);
+            padding-top: 2rem;
+        }
+
+        .cta-left h3 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .cta-left p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .cta-right {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            font-size: 0.85rem;
+            text-align: right;
+        }
+
+        @media (max-width: 600px) {
+            .cta-right { text-align: left; }
+        }
+
+        .cta-right a {
+            color: var(--text-white);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .cta-right a:hover {
+            color: var(--accent-orange);
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Client-Side AI Test</h2>
-    <p>This script downloads a tiny AI model into your browser cache and runs locally.</p>
-    
-    <div id="status">Initializing execution engine...</div>
-    
-    <textarea id="prompt" disabled placeholder="Type a prompt here... (e.g., Write a haiku about coding)"></textarea>
-    <button id="generate-btn" disabled>Generate Response</button>
-    
-    <h3>AI Output:</h3>
-    <div id="output">The model output will appear here...</div>
-</div>
+    <div class="container">
+        
+        <!-- HEADER / HERO -->
+        <header>
+            <div class="huge-title">Portfolio</div>
+            <div class="hero-flex">
+                <div class="hero-text">
+                    <p class="greeting">Hello, I'm</p>
+                    <h1 class="name">Alex Morgan</h1>
+                    <p class="title-sub">Web Designer & Digital Creative</p>
+                    <p class="bio">I craft clean, modern, and user-focused web experiences that help brands stand out and connect with their target audience seamlessly.</p>
+                    <p class="signature">Alex Morgan</p>
+                </div>
+                <div class="hero-graphic">
+                    <div class="circle-bg"></div>
+                    <div class="profile-img"></div>
+                </div>
+            </div>
+        </header>
 
-<script type="module">
-    // Import Transformers.js v3 from the official CDN web module
-    import { env, pipeline } from 'https://jsdelivr.net';
+        <!-- SELECTED PROJECTS -->
+        <section>
+            <h2 class="section-title">Selected Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <span class="proj-num">01</span>
+                    <h3 class="proj-title">Studio<br>Form</h3>
+                </div>
+                <div class="project-card">
+                    <span class="proj-num">02</span>
+                    <h3 class="proj-title">Avenue<br>& Co.</h3>
+                </div>
+                <div class="project-card">
+                    <span class="proj-num">03</span>
+                    <h3 class="proj-title">The<br>Journal</h3>
+                </div>
+                <div class="project-card">
+                    <span class="proj-num">04</span>
+                    <h3 class="proj-title">Fueling<br>Perf.</h3>
+                </div>
+            </div>
+        </section>
 
-    // Force the library to use standard WASM (CPU execution) for maximum mobile compatibility
-    env.allowLocalModels = false;
+        <section>
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-container">
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <span class="skill-name">UI/UX Design</span>
+                        <span class="skill-val">95%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Web Development</span>
+                        <span class="skill-val">90%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Brand Strategy</span>
+                        <span class="skill-val">85%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Motion Graphics</span>
+                        <span class="skill-val">80%</span>
+                    </div>
+                </div>
+                <div class="quote-box">
+                    <p class="quote-text">"I design and build digital experiences that are not only beautiful but also functional, intuitive, and impactful."</p>
+                </div>
+            </div>
+        </section>
 
-    const statusDiv = document.getElementById('status');
-    const promptInput = document.getElementById('prompt');
-    const generateBtn = document.getElementById('generate-btn');
-    const outputDiv = document.getElementById('output');
+        <section>
+            <h2 class="section-title">What Clients Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="test-text">"Alex is an incredible designer. His attention to detail, code structure, and creative direction turned our vision into reality."</p>
+                    <p class="test-author">— Sarah Jenkins</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="test-text">"Professional, adaptive, and highly skilled. Delivers pixel-perfect assets on time, every single iteration."</p>
+                    <p class="test-author">— David Kross</p>
+                </div>
+            </div>
+        </section>
 
-    let generator;
+        <footer class="footer-cta">
+            <div class="cta-left">
+                <h3>Let's Create Something Great</h3>
+                <p>Have a project in mind? Let's build something beautiful together.</p>
+            </div>
+            <div class="cta-right">
+                <a href="mailto:hello@alexmorgan.design">hello@alexmorgan.design</a>
+                <a href="https://alexmorgan.design" target="_blank">www.alexmorgan.design</a>
+                <a href="#">@alexm_design</a>
+            </div>
+        </footer>
 
-    async function initAI() {
-        try {
-            statusDiv.innerText = "Connecting to repository models...";
-
-            // Initialize the pipeline strictly via CPU/WASM
-            generator = await pipeline('text-generation', 'onnx-community/Qwen2.5-0.5B-Instruct', {
-                device: 'wasm',
-                progress_callback: (data) => {
-                    if (data.status === 'progress') {
-                        statusDiv.innerText = `Downloading weights: ${data.file}\nProgress: ${Math.round(data.progress)}%`;
-                    } else if (data.status === 'ready') {
-                        statusDiv.innerText = "Finalizing compilation layer...";
-                    }
-                }
-            });
-
-            statusDiv.innerText = "🚀 AI Engine Ready! (Compute is 100% local)";
-            promptInput.disabled = false;
-            generateBtn.disabled = false;
-        } catch (error) {
-            console.error(error);
-            statusDiv.innerText = "Initialization failed: " + error.message;
-        }
-    }
-
-    async function generateText() {
-        const text = promptInput.value.trim();
-        if (!text) return;
-
-        generateBtn.disabled = true;
-        outputDiv.innerText = "Thinking...";
-
-        try {
-            // Standard formatting prompt structure for instructions
-            const formattedPrompt = `<|im_start|>user\n${text}<|im_end|>\n<|im_start|>assistant\n`;
-            
-            const result = await generator(formattedPrompt, { 
-                max_new_tokens: 80,
-                temperature: 0.6,
-                return_full_text: false
-            });
-            
-            outputDiv.innerText = result[0].generated_text;
-        } catch (error) {
-            outputDiv.innerText = "Generation failed: " + error.message;
-        } finally {
-            generateBtn.disabled = false;
-        }
-    }
-
-    generateBtn.addEventListener('click', generateText);
-    initAI();
-</script>
+    </div>
 
 </body>
 </html>
