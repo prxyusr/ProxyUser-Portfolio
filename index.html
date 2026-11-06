@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProxyUser | Portfolio</title>
     <style>
-        /* --- DESIGN SYSTEM & CSS VARIABLES --- */
         :root {
             --bg-base: #0a0a0a;
             --bg-surface: #121212;
@@ -33,7 +32,6 @@
             scroll-behavior: smooth;
         }
 
-        /* --- GLOBAL UNIQUE STYLING & CURSOR GLOW --- */
         .glow-overlay {
             position: fixed;
             top: 0;
@@ -44,8 +42,7 @@
             background: radial-gradient(circle 400px at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.04), transparent 80%);
             z-index: 9999;
         }
-
-        /* --- NAVIGATION --- */
+        
         nav {
             position: fixed;
             top: 0;
@@ -87,7 +84,6 @@
             color: var(--text-primary);
         }
 
-        /* --- HERO SECTION --- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -157,7 +153,6 @@
             text-transform: uppercase;
         }
 
-        /* --- WORK / PORTFOLIO SECTION --- */
         .section {
             padding: 8rem 10%;
             border-bottom: 1px solid var(--border-color);
@@ -247,7 +242,6 @@
             border-radius: 2px;
         }
 
-        /* --- ABOUT & SKILLS --- */
         .about-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -288,7 +282,7 @@
             background: var(--bg-surface);
         }
 
-        /* --- CONTACT --- */
+        
         .contact-box {
             background: var(--bg-surface);
             border: 1px solid var(--border-color);
@@ -324,7 +318,6 @@
             color: var(--text-secondary);
         }
 
-        /* --- FOOTER --- */
         footer {
             padding: 2rem 10%;
             display: flex;
@@ -347,7 +340,7 @@
             color: var(--text-primary);
         }
 
-        /* --- RESPONSIVE LAYOUTS --- */
+
         @media (max-width: 900px) {
             .hero-grid, .about-layout {
                 grid-template-columns: 1fr;
